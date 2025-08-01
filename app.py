@@ -35,7 +35,7 @@ menu = st.sidebar.radio('Menu', ['Marcar Ponto', 'Relatório Diário', 'Exportar
 
 # Marcação de ponto
 if menu == 'Marcar Ponto':
-    st.subheader('bate... bate... bate!')
+    st.subheader('Marcação')
     nome = st.text_input('Nome do colaborador')
     cargo = st.text_input('Cargo')
     data = st.date_input('Data', value=date.today())
