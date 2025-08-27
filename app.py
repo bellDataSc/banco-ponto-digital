@@ -256,7 +256,7 @@ def tela_login():
     col1, col2, col3 = st.columns([1, 2, 1])
     
     with col2:
-        st.subheader("🔐 Login")
+        st.subheader("Login")
         
         with st.form("login_form"):
             usuario = st.text_input("Usuário")
@@ -296,32 +296,32 @@ def dashboard_principal():
         st.write(f"**Usuário:** {usuario_info.get('nome', usuario)}")
         st.write(f"**Cargo:** {usuario_info.get('cargo', 'N/A')}")
         
-        if st.button("🚪 Logout", use_container_width=True):
+        if st.button("Logout", use_container_width=True):
             st.session_state.logged_user = None
             st.rerun()
     
     # Menu principal
     menu = st.selectbox(
         "Selecione uma opção:",
-        ["📍 Batidas de Ponto", "📊 Relatórios", "📈 Dashboard", "📋 Histórico", "📤 Exportar Dados"]
+        ["Batidas de Ponto", "Relatórios", "Dashboard", "Histórico", "Exportar Dados"]
     )
     
-    if menu == "📍 Batidas de Ponto":
+    if menu == "Batidas de Ponto":
         tela_batidas()
-    elif menu == "📊 Relatórios":
+    elif menu == "Relatórios":
         tela_relatorios()
-    elif menu == "📈 Dashboard":
+    elif menu == "Dashboard":
         tela_dashboard()
-    elif menu == "📋 Histórico":
+    elif menu == "Histórico":
         tela_historico()
-    elif menu == "📤 Exportar Dados":
+    elif menu == "Exportar Dados":
         tela_exportar()
 
 # ==================== TELAS FUNCIONAIS ====================
 
 def tela_batidas():
     """Tela de registro de batidas"""
-    st.subheader("📍 Registro de Batidas de Ponto")
+    st.subheader("Registro de Batidas de Ponto")
     
     usuario = st.session_state.logged_user
     hoje = datetime.now().strftime('%Y-%m-%d')
@@ -349,38 +349,38 @@ def tela_batidas():
     col1, col2, col3, col4, col5 = st.columns(5)
     
     with col1:
-        if st.button("🕐 Registrar Saída", use_container_width=True):
+        if st.button("Registrar Saída", use_container_width=True):
             PontoManager.registrar_batida(usuario, 'saida')
             st.success("Saída registrada!")
             st.rerun()
     
     with col2:
-        if st.button("🍽️ Saída Almoço", use_container_width=True):
+        if st.button("Saída Almoço", use_container_width=True):
             PontoManager.registrar_batida(usuario, 'almoco_saida')
             st.success("Saída para almoço registrada!")
             st.rerun()
     
     with col3:
-        if st.button("🍽️ Retorno Almoço", use_container_width=True):
+        if st.button("Retorno Almoço", use_container_width=True):
             PontoManager.registrar_batida(usuario, 'almoco_retorno')
             st.success("Retorno do almoço registrado!")
             st.rerun()
     
     with col4:
-        if st.button("⭐ Extra 1", use_container_width=True):
+        if st.button("Extra 1", use_container_width=True):
             PontoManager.registrar_batida(usuario, 'extra1')
             st.success("Batida extra 1 registrada!")
             st.rerun()
     
     with col5:
-        if st.button("⭐ Extra 2", use_container_width=True):
+        if st.button("Extra 2", use_container_width=True):
             PontoManager.registrar_batida(usuario, 'extra2')
             st.success("Batida extra 2 registrada!")
             st.rerun()
 
 def tela_relatorios():
     """Tela de relatórios"""
-    st.subheader("📊 Relatórios por Contrato")
+    st.subheader("Relatórios por Contrato")
     
     usuario = st.session_state.logged_user
     
@@ -422,7 +422,7 @@ def tela_relatorios():
 
 def tela_dashboard():
     """Dashboard com métricas gerais"""
-    st.subheader("📈 Dashboard Geral")
+    st.subheader("Dashboard Geral")
     
     usuario = st.session_state.logged_user
     hoje = datetime.now().strftime('%Y-%m-%d')
@@ -475,7 +475,7 @@ def tela_dashboard():
 
 def tela_historico():
     """Histórico completo de batidas"""
-    st.subheader("📋 Histórico de Batidas")
+    st.subheader("Histórico de Batidas")
     
     usuario = st.session_state.logged_user
     batidas = PontoManager.get_batidas_usuario(usuario)
@@ -532,7 +532,7 @@ def tela_historico():
 
 def tela_exportar():
     """Exportação de dados"""
-    st.subheader("📤 Exportar Dados")
+    st.subheader("Exportar Dados")
     
     usuario = st.session_state.logged_user
     batidas = PontoManager.get_batidas_usuario(usuario)
@@ -568,7 +568,7 @@ def tela_exportar():
                 df_resumo.to_excel(writer, sheet_name='Resumo Diário', index=False)
             
             st.download_button(
-                "📥 Baixar Excel",
+                "Baixar Excel",
                 buffer.getvalue(),
                 file_name=f"ponto_{usuario}_{datetime.now().strftime('%Y%m%d')}.xlsx",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
@@ -578,7 +578,7 @@ def tela_exportar():
             st.subheader("Exportar CSV")
             csv = df.to_csv(index=False).encode('utf-8')
             st.download_button(
-                "📥 Baixar CSV",
+                "Baixar CSV",
                 csv,
                 file_name=f"ponto_{usuario}_{datetime.now().strftime('%Y%m%d')}.csv",
                 mime="text/csv"
